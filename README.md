@@ -28,3 +28,8 @@ Type into Chrome [omnibox](http://www.makeuseof.com/tag/11-quick-tricks-to-becom
 ![Chrome.app npm-go — use](chrome-use.png)
 
 **💡Tip** Use as search url: `http://npm-api.herokuapp.com/%s`
+
+## TODO
+* `/git/` — url for git
+* `/v/` — version
+* `/i/` — info (human readable package.json view)
