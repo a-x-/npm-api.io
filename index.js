@@ -5,6 +5,8 @@ var help = require('fs').readFileSync('index.html', { encoding: 'utf-8' });
 
 console.log('help', help);
 
+app.use(express.static('.'));
+
 app.get('/', function (req, res) {
     res.send(help)
 });
