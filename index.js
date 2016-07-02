@@ -42,7 +42,7 @@ app.listen(process.env.PORT, function () {
 function getPackageUrl(name) {
     var repo = npm.repo(name);
 
-    writeDB('packages.log');
+    // writeDB('packages.log');
 
     return repo.package()
     .then(function(pkg) {
