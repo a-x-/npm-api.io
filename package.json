@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build-docs",
-    "build-docs": "md2html README.md > index.html && echo '<link href=index.css rel=stylesheet>' >> index.html"
+    "build-docs": "md2html README.md > index.html && echo '<link href=index.css rel=stylesheet>' >> index.html && echo '<!doctype html><link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"favicon.ico\"><meta charset=\"utf-8\">'$(< index.html) > index.html"
   },
   "repository": {
     "type": "git",
