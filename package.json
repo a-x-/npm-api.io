@@ -1,6 +1,6 @@
 {
   "name": "npmapi-io",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Npm Api Service",
   "main": "index.js",
   "scripts": {
