@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var npm = new require('npm-api')();
+var _ = require('lodash');
 
 var fs = require('fs');
 var read = function(name) {return fs.readFileSync(name, { encoding: 'utf-8' })};
@@ -61,7 +62,7 @@ function writeLogDb(name) {
     MongoClient.connect(mongoUrl, function(err, db) {
         if (err) console.log('mongo err', err);
         if (!db) return;
-        var collection = db.collection('heroku_rc00k60z');
+        var collection = db.collection(process.env.MONGODB_COLLECTION);
         collection.insertOne({"package": name}, function(err, result) {
             db.close();
         });
@@ -73,9 +74,9 @@ function readLogsDb() {
         MongoClient.connect(mongoUrl, function(err, db) {
             if (err) rej(err);
             if (!db) return;
-            var collection = db.collection('heroku_rc00k60z');
+            var collection = db.collection(process.env.MONGODB_COLLECTION);
             collection.find({}).toArray(function(err, docs) {
-                res(docs);
+                res(_(docs).map('package'));
                 db.close();
             });
         });
