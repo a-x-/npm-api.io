@@ -16,13 +16,25 @@ app.get('/', function (req, res) {
 });
 
 app.get('/p/:package', function (req, res) {
-    getPackageUrl(req.params.package, function(url) { res.send(url); })
-    .catch(function(err) { res.status(500).send(err); });
+    var package = req.params.package;
+    getPackageUrl(package)
+    .then(function(url) { res.end(url); })
+    .then(function() { writeLogDb(package); })
+    .catch(function(err) { res.status(500).end('error: package not found or server broken: ' + err); });
 });
 
 app.get('/go/:package', function (req, res) {
-    getPackageUrl(req.params.package, function(url) { res.redirect(url); })
-    .catch(function(err) { res.status(500).send(err); });
+    var package = req.params.package;
+    getPackageUrl(package)
+    .then(function(url) { res.redirect(url); })
+    .then(function() { writeLogDb(package); })
+    .catch(function(err) { res.status(500).end('error: package not found or server broken: ' + err); });
+});
+
+app.get('/logs', function(req, res) {
+    readLogsDb()
+    .then(function(docs) {res.send(docs)})
+    .catch(function(err) { res.status(500).end('error: server broken: ' + err); });
 });
 
 app.listen(process.env.PORT, function () {
@@ -32,35 +44,40 @@ app.listen(process.env.PORT, function () {
 function getPackageUrl(name, cb) {
     var repo = npm.repo(name);
 
-    var promise = repo.package()
+    return repo.package()
     .then(function(pkg) {
         var hostpath = pkg.repository.url
         .replace(/^.+\/\//, '')
         .replace(/^.+@/g, '')
         .replace(/:/, '/')
         .replace(/\.git$/, '');
-        var url = 'https://' + hostpath;
 
-        cb(url);
-        return url;
+        return 'https://' + hostpath;
     });
-    
-    writeLogDb(name);
-    return promise;
 }
 
 function writeLogDb(name) {
+    console.log('> log', name);
     MongoClient.connect(mongoUrl, function(err, db) {
         if (err) console.log('mongo err', err);
         if (!db) return;
         var collection = db.collection('heroku_rc00k60z');
         collection.insertOne({"package": name}, function(err, result) {
-            // console.log('insert', err, result);
-            // collection.find({}).toArray(function(err, docs) {
-            //     console.log('wtf', docs);
-            //     db.close();
-            // });
             db.close();
+        });
+    });
+}
+
+function readLogsDb() {
+    return new Promise(function(res, rej) {
+        MongoClient.connect(mongoUrl, function(err, db) {
+            if (err) rej(err);
+            if (!db) return;
+            var collection = db.collection('heroku_rc00k60z');
+            collection.find({}).toArray(function(err, docs) {
+                res(docs);
+                db.close();
+            });
         });
     });
 }
