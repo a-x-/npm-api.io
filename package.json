@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build-docs",
+    "build-docs": "md2html README.md > index.html"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
     "npm-api": "^0.4.6"
   },
   "devDependencies": {
+    "markdown": "^0.5.0",
     "nodemon": "^1.9.2"
   }
 }
