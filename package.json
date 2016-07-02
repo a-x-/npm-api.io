@@ -4,6 +4,7 @@
   "description": "Npm Api Service",
   "main": "index.js",
   "scripts": {
+    "start": "echo hi",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/a-x-/npm-api.io/issues"
   },
-  "homepage": "https://github.com/a-x-/npm-api.io#readme"
+  "homepage": "https://github.com/a-x-/npm-api.io#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "npm-api": "^0.4.6"
+  }
 }
