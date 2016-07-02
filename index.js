@@ -2,9 +2,13 @@ var express = require('express');
 var app = express();
 
 var npm = new require('npm-api')();
-var repo = npm.repo('gulp')
 
 app.get('/', function (req, res) {
+    res.send('<h1>Npm Api Service</h1><h2>Usage</h2><p><code>GET /:package</code> e.g. GET /gulp retreives github url')
+});
+
+app.get('/:package', function (req, res) {
+    var repo = npm.repo(req.params.package);
     repo.package()
     .then(function(pkg) {
         res.send('https://'+pkg.repository.url.split('//')[1].replace(/\.git$/, ''));
