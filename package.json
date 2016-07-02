@@ -1,0 +1,23 @@
+{
+  "name": "npmapi-io",
+  "version": "0.0.1",
+  "description": "Npm Api Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-x-/npm-api.io.git"
+  },
+  "keywords": [
+    "npm",
+    "api"
+  ],
+  "author": "invntrm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/a-x-/npm-api.io/issues"
+  },
+  "homepage": "https://github.com/a-x-/npm-api.io#readme"
+}
