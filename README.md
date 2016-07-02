@@ -22,6 +22,9 @@ Use it with your **Alfred** app for fast opening npm-packages' git repos.
 Use it in Chrome, Opera, Yandex.browser and another Chromium based bro as custom search.
 
 ![Chrome.app npm-go — setup](chrome-setup.png)
+
+Type into Chrome [omnibox](http://www.makeuseof.com/tag/11-quick-tricks-to-become-a-chrome-omnibox-power-user/) (address bar): `ng`, then press `space` or `tab`, then input package name and press `enter`.
+
 ![Chrome.app npm-go — use](chrome-use.png)
 
 **💡Tip** Use as search url: `http://npm-api.herokuapp.com/%s`
