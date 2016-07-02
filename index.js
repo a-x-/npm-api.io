@@ -1,24 +1,39 @@
 var express = require('express');
 var app = express();
-
 var npm = new require('npm-api')();
+var help = require('fs').readFileSync('index.html', { encoding: 'utf-8' });
+
+console.log('help', help);
 
 app.get('/', function (req, res) {
-    res.send('<h1>Npm Api Service</h1><h2>Usage</h2><p><code>GET /:package</code> e.g. GET /gulp retreives github url')
+    res.send(help)
 });
 
-app.get('/:package', function (req, res) {
-    var repo = npm.repo(req.params.package);
-    repo.package()
-    .then(function(pkg) {
-        res.send('https://'+pkg.repository.url.split('//')[1].replace(/\.git$/, ''));
-    })
-    .catch(function(err) {
-        res.status(500).send(err);
-    });
+app.get('/p/:package', function (req, res) {
+    getPackageUrl(req.params.package)
+    .then(function(url) { res.send(url); })
+    .catch(function(err) { res.status(500).send(err); });
+});
+
+app.get('/go/:package', function (req, res) {
+    getPackageUrl(req.params.package)
+    .then(function(url) { res.redirect(url); })
+    .catch(function(err) { res.status(500).send(err); });
 });
 
 app.listen(process.env.PORT, function () {
     console.log('Example app listening on port ' + process.env.PORT);
 });
 
+function getPackageUrl(name) {
+    var repo = npm.repo(name);
+    return repo.package()
+    .then(function(pkg) {
+        var hostpath = pkg.repository.url
+        .replace(/^.+\/\//, '')
+        .replace(/^.+@/g, '')
+        .replace(/\.git$/, '');
+
+        return 'https://' + hostpath;
+    });
+}
