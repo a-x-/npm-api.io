@@ -3,10 +3,10 @@ Npm Api Service
 
 ## Usage
 
-`GET /p/:package` e.g. `GET /p/gulp`
-retreives gulp's github url.
+`GET /p/:package` e.g. [`GET /p/gulp`](http://npm-api.herokuapp.com/p/gulp)
+retrieves gulp's github url.
 
-`GET /go/:package` e.g. `GET /go/enb`
+`GET /go/:package` e.g. [`GET /go/enb`](http://npm-api.herokuapp.com/go/enb)
 redirects to enb's github repo page.
 
 ## For what
