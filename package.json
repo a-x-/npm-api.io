@@ -25,6 +25,7 @@
   "homepage": "https://github.com/a-x-/npm-api.io#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "mongodb": "^2.1.18",
     "npm-api": "^0.4.6"
   },
   "devDependencies": {

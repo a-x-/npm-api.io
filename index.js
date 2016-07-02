@@ -1,9 +1,21 @@
 var express = require('express');
 var app = express();
 var npm = new require('npm-api')();
-var help = require('fs').readFileSync('index.html', { encoding: 'utf-8' });
+var fs = require('fs');
+var read = function(name) {return fs.readFileSync(name, { encoding: 'utf-8' })};
+var help = read('index.html');
 
-console.log('help', help);
+/*var MongoClient = require('mongodb').MongoClient;
+var url = process.env.MONGODB_URI;
+MongoClient.connect(url, function(err, db) {
+  // Use the admin database for the operation
+  var adminDb = db.admin();
+  // List all the available databases
+  adminDb.listDatabases(function(err, dbs) {
+    console.log('dbs.databases ' , dbs.databases);
+    db.close();
+  });
+});*/
 
 app.use(express.static('.'));
 
@@ -29,13 +41,18 @@ app.listen(process.env.PORT, function () {
 
 function getPackageUrl(name) {
     var repo = npm.repo(name);
+
+    writeDB('packages.log');
+
     return repo.package()
     .then(function(pkg) {
         var hostpath = pkg.repository.url
         .replace(/^.+\/\//, '')
         .replace(/^.+@/g, '')
+        .replace(/:/, '/')
         .replace(/\.git$/, '');
 
         return 'https://' + hostpath;
     });
 }
+
