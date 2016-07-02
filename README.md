@@ -1,4 +1,4 @@
-# ![logo](npm-go.svg) npm-api.io
+# ![logo](favicon.png) npm-api.io
 Npm Api Service
 
 ## Usage
