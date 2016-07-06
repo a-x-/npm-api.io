@@ -12,6 +12,15 @@ var mongoUrl = process.env.MONGODB_URI;
 
 app.use(express.static('.'));
 
+app.use('*', function redirect(req, res, next) {
+    if (req.hostname === 'npm-api.herokuapp.com') {
+        console.log('redirect');
+        res.redirect('npmapi.invntrm.ru')
+    } else {
+        next();
+    }
+})
+
 app.get('/', function (req, res) {
     res.send(help)
 });
