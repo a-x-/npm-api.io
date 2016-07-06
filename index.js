@@ -16,7 +16,8 @@ var customRouter = express.Router();
 customRouter.get('*', function redirect(req, res, next) {
     if (req.hostname === 'npm-api.herokuapp.com') {
         console.log('redirect');
-        res.redirect('npmapi.invntrm.ru')
+        res.redirect('http://npmapi.invntrm.ru' + req.originalUrl);
+        res.end();
     } else {
         next();
     }
