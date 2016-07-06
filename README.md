@@ -3,10 +3,10 @@ Npm Api Service
 
 ## Usage
 
-`GET /p/:package` e.g. [`GET /p/gulp`](http://npm-api.herokuapp.com/p/gulp)
+`GET /p/:package` e.g. [`GET /p/gulp`](http://npmapi.invntrm.ru/p/gulp)
 retrieves gulp's github url.
 
-`GET /go/:package` e.g. [`GET /go/enb`](http://npm-api.herokuapp.com/go/enb)
+`GET /go/:package` e.g. [`GET /go/enb`](http://npmapi.invntrm.ru/go/enb)
 redirects to enb's github repo page.
 
 ## For what
@@ -16,7 +16,7 @@ Use it with your **Alfred** app for fast opening npm-packages' git repos.
 ![Alfred.app npm-go — setup](alfred-setup.png)
 ![Alfred.app npm-go — use](alfred-use.png)
 
-**💡Tip** Grab an icon for the Alfred by url: [npm-api.herokuapp.com/favicon.png](http://npm-api.herokuapp.com/favicon.png)
+**💡Tip** Grab an icon for the Alfred by url: [npmapi.invntrm.ru/favicon.png](http://npmapi.invntrm.ru/favicon.png)
 
 ### Chrome: custom search github repo for npm package
 Use it in Chrome, Opera, Yandex.browser and another Chromium based bro as custom search.
@@ -27,7 +27,7 @@ Type into Chrome [omnibox](http://www.makeuseof.com/tag/11-quick-tricks-to-becom
 
 ![Chrome.app npm-go — use](chrome-use.png)
 
-**💡Tip** Use as search url: `http://npm-api.herokuapp.com/%s`
+**💡Tip** Use as search url: `http://npmapi.invntrm.ru/%s`
 
 ## TODO
 * `/git/` — url for git
