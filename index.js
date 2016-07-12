@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 var fs = require('fs');
 var read = function(name) {return fs.readFileSync(name, { encoding: 'utf-8' })};
-var help = read('index.html');
+var help = read(__dirname + '/index.html');
 
 var MongoClient = require('mongodb').MongoClient;
 var mongoUrl = process.env.MONGODB_URI;
